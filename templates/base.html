@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<title>Social Media</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'SocialMediaSite/css/master.css' %}">
+	<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+
+<style>
+body {
+	background-color: powderblue;
+font-family: 'Dancing Script', cursive;
+font-size: 30px;
+background-image:url('https://videohive.img.customer.envatousercontent.com/files/246215107/Light_Social_Networks_Icons_Screen.jpg?auto=compress%2Cformat&fit=crop&crop=top&max-h=8000&max-w=590&s=15250bbb9611306218ba77b70ec530c4');
+background-repeat:no-repeat;
+background-size:100%;
+}
+#myHeader {
+  min-height: 10px;
+	background-color: white;
+}
+#right {
+	float: right;
+
+
+}
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav li {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+
+  border-bottom: 3px solid transparent;
+	font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
+}
+
+.topnav li:hover {
+  border-bottom: 3px solid red;
+}
+
+.topnav li.active {
+  border-bottom: 3px solid red;
+}
+
+
+}
+
+</style>
+</head>
+<body>
+<div class="topnav">
+	<ul id="myHeader" class="nav nav-pills">
+		{% if user.is_authenticated %}
+  		<li role="presentation"><a href="{% url 'posts:create' %}">Post</a></li>
+  		<li role="presentation"><a href="{% url 'groups:all' %}">Groups</a></li>
+  		<li role="presentation"><a href="{% url 'groups:create' %}">Create Group</a></li>
+			<li role="presentation" id="right"><a href="{% url 'accounts:logout' %}">Log Out</a></li>
+		{% else %}
+			<li role="presentation"><a href="{% url 'groups:all' %}">Groups</a></li>
+			<li role="presentation" id="right"><a href="{% url 'accounts:login' %}">Log In</a></li>
+			<li role="presentation" id="right"><a href="{% url 'accounts:signup' %}">Sign Up</a></li>
+		{% endif %}
+</ul>
+
+</div>
+
+
+	<div class="container mycontent">
+	{% block content %}
+
+	{% endblock %}
+	</div>
+
+</body>
+</html>
